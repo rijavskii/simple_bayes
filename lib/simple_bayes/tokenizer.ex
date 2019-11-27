@@ -67,7 +67,12 @@ defmodule SimpleBayes.Tokenizer do
       ["foo", "bar"]
   """
   def filter_out(list, filter_list) do
-    list -- filter_list
+    Enum.reduce(list,[], fn(word,acc)-> 
+      case word in filter_list do
+        true -> acc
+        false -> [word | acc]
+      end
+    end)
   end
 
   @doc """
