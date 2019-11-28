@@ -50,6 +50,7 @@ defmodule SimpleBayes.Tokenizer do
   def tokenize(string) do
     string
     |> String.downcase()
+    |> remove_digits()
     |> String.replace(~r/[^0-9a-zа-яґієї _\-'"]+/iu, "")
     |> String.split()
   end
@@ -112,5 +113,17 @@ defmodule SimpleBayes.Tokenizer do
 
       Map.put(acc, k, v)
     end)
+  end
+  @doc """
+  Delete all numbers in a sentence and signs $$€₴.
+
+  ## Examples
+
+      iex> SimpleBayes.Tokenizer.remove_digits("It is costs 4000$")
+      "It is costs "
+  """
+  def remove_digits(string)do
+    string
+    |> String.replace(~r/[0-9$€₴]+/iu, "")
   end
 end
