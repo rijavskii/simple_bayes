@@ -51,6 +51,7 @@ defmodule SimpleBayes.Tokenizer do
     string
     |> String.downcase()
     |> remove_digits()
+    |> replace_some_signs()
     |> String.replace(~r/[^0-9a-zа-яґієї _\-'"]+/iu, "")
     |> String.split()
   end
@@ -125,5 +126,10 @@ defmodule SimpleBayes.Tokenizer do
   def remove_digits(string)do
     string
     |> String.replace(~r/[0-9$€₴]+/iu, "")
+  end
+  
+  def replace_some_signs(string)do
+    string
+    |> String.replace(~r/[\.\,\-\?\&\_\=\!\:\;\#\+\*\%\"\'\(\)\[\]]+/iu, " ")
   end
 end
