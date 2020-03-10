@@ -130,6 +130,6 @@ defmodule SimpleBayes.Tokenizer do
   
   def replace_some_signs(string)do
     string
-    |> String.replace(~r/[\.\,\-\?\&\_\=\!\:\;\#\+\*\%\"\'\(\)\[\]]+/iu, " ")
+    |> String.replace(~r/[\.\,\-\?\&\_\=\!\:\;\#\+\*\%\"\'\(\)\[\]\\]+/iu, " ")
   end
 end
